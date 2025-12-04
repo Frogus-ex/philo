@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:37:25 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/03 12:06:55 by frogus           ###   ########.fr       */
+/*   Updated: 2025/12/04 10:25:12 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	data_init(t_table *table)
 	table->end_of_meal = false;
 	table->all_threads_ready = false;
 	table->threads_running_id = 0;
-	table->philos = safe_malloc(sizeof(t_philo) *table->philo_nbr);
+	table->philos = safe_malloc(sizeof(t_philo) * table->philo_nbr);
 	safe_mutex(&table->table_mutex, INIT);
 	safe_mutex(&table->write_mutex, INIT);
 	table->forks = safe_malloc(sizeof(t_fork) * table->philo_nbr);

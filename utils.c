@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:06:27 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/03 13:55:37 by frogus           ###   ########.fr       */
+/*   Updated: 2025/12/04 10:28:18 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	print_error(char *error)
 long	get_time(t_time_code time_code)
 {
 	struct timeval	tv;
+
 	if (gettimeofday(&tv, NULL))
 		print_error("getimeofday failed");
 	else if (SECOND == time_code)
@@ -63,7 +64,7 @@ void	clean_all(t_table *table)
 	int		i;
 
 	i = -1;
-	while(++i < table->philo_nbr)
+	while (++i < table->philo_nbr)
 	{
 		philo = table->philos + i;
 		safe_mutex(&philo->philo_mutex, DESTROY);

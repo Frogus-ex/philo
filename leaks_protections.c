@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leaks_protections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:40:09 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/03 11:02:30 by frogus           ###   ########.fr       */
+/*   Updated: 2025/12/04 10:27:19 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*safe_malloc(size_t bytes)
 {
 	void	*ret;
-	
+
 	ret = malloc(bytes);
 	if (NULL == ret)
 		print_error("Malloc failed");
@@ -25,7 +25,7 @@ void	*safe_malloc(size_t bytes)
 static void	handle_mutex_error(int status, t_opcode opcode)
 {
 	if (0 == status)
-		return;
+		return ;
 	if (EINVAL == status && LOCK == opcode || UNLOCK == opcode)
 		print_error("The value specified by mutex is invalid.");
 	else if (EINVAL == status && INIT == opcode)
@@ -76,8 +76,8 @@ static void	handle_thread_error(int status, t_opcode opcode)
 			"specifies the calling thread.");
 }
 
-void	safe_thread(pthread_t *thread, void *(*foo)(void *),
-		void *data, t_opcode opcode)
+void	safe_thread(pthread_t *thread, void *(*foo)(void *), void *data,
+		t_opcode opcode)
 {
 	if (CREATE == opcode)
 		handle_thread_error(pthread_create(thread, NULL, foo, data), opcode);
@@ -86,6 +86,5 @@ void	safe_thread(pthread_t *thread, void *(*foo)(void *),
 	else if (DETACH == opcode)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
-		print_error("wrong opcode for thread handle"
-			"use create join or detach");
+		print_error("wrong opcode for thread handle use create join or detach");
 }

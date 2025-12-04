@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   synchro_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:03:49 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/03 14:19:02 by frogus           ###   ########.fr       */
+/*   Updated: 2025/12/04 10:28:10 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	wait_all_thread(t_table *table)
 {
-	while (!get_bool(&table->table_mutex, &table->all_threads_ready));
+	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
+		;
 }
 
 bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr)
@@ -34,7 +35,6 @@ void	increase_long(t_mtx *mutex, long *value)
 	safe_mutex(mutex, LOCK);
 	(*value)++;
 	safe_mutex(mutex, UNLOCK);
-	
 }
 
 void	must_think(t_philo *philo)
@@ -44,7 +44,6 @@ void	must_think(t_philo *philo)
 		if (philo->id % 2 == 0)
 			my_usleep(3e4, philo->table);
 	}
-	else
-		if (philo->id % 2)
-			philo_thinking(philo, true);
+	else if (philo->id % 2)
+		philo_thinking(philo, true);
 }
