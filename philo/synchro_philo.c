@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:03:49 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/05 14:24:37 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:51:07 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ void	must_think(t_philo *philo)
 	else if (philo->id % 2)
 		philo_thinking(philo, true);
 }
-

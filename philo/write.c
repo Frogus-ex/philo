@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:38:45 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:28:27 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:49:55 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	write_states(t_philo_states states, t_philo *philo, bool debug)
 	{
 		if ((TAKE_FIRST_FORK == states || TAKE_SECOND_FORK == states)
 			&& !simulation_done(philo->table))
-			printf("%-6ld %d has taken fork\n", elapsed, philo->id);
+			printf("%ld %d has taken fork\n", elapsed, philo->id);
 		else if (EATING == states && !simulation_done(philo->table))
-			printf("%-6ld %d is eating\n", elapsed, philo->id);
+			printf("%ld %d is eating\n", elapsed, philo->id);
 		else if (SLEEPING == states && !simulation_done(philo->table))
-			printf("%-6ld %d is sleeping\n", elapsed, philo->id);
+			printf("%ld %d is sleeping\n", elapsed, philo->id);
 		else if (THINKING == states && !simulation_done(philo->table))
-			printf("%-6ld %d is thinking\n", elapsed, philo->id);
+			printf("%ld %d is thinking\n", elapsed, philo->id);
 		else if (DEAD == states && !simulation_done(philo->table))
-			printf("%-6ld %d is dead\n", elapsed, philo->id);
+			printf("%ld %d is dead\n", elapsed, philo->id);
 	}
 	safe_mutex(&philo->table->write_mutex, UNLOCK);
 }

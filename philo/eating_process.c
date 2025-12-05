@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:28:45 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/05 16:19:41 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:40:36 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	philo_thinking(t_philo *philo, bool pre_sim)
 	time_to_eat = philo->table->time_to_eat;
 	time_to_sleep = philo->table->time_to_sleep;
 	time_to_think = time_to_eat * 2 - time_to_sleep;
-	if (time_to_think < 0)
+	if (time_to_think <= 0)
 		time_to_think = 0;
 	my_usleep(time_to_think * 0.42, philo->table);
 }
@@ -58,7 +58,7 @@ void	*lone_philo(void *arg)
 		get_time(MILLISECOND));
 	increase_long(&philo->table->table_mutex,
 		&philo->table->threads_running_id);
-	// write_states(TAKE_FIRST_FORK, philo, DEBUG_MODE);
+	write_states(TAKE_FIRST_FORK, philo, DEBUG_MODE);
 	while (!simulation_done(philo->table))
 		usleep(200);
 	return (NULL);
