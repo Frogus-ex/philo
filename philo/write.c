@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:38:45 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/05 16:49:55 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:56:36 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	write_states_debug(t_philo_states states, t_philo *philo, long elapsed)
 		printf("%-6ld %d is thinking %d\n", elapsed, philo->id,
 			philo->first_fork->fork_id);
 	if (DEAD == states && !simulation_done(philo->table))
-		printf("%-6ld %d is dead\n", elapsed, philo->id);
+		printf("%-6ld %d died\n", elapsed, philo->id);
 }
 
 void	write_states(t_philo_states states, t_philo *philo, bool debug)
@@ -54,7 +54,7 @@ void	write_states(t_philo_states states, t_philo *philo, bool debug)
 		else if (THINKING == states && !simulation_done(philo->table))
 			printf("%ld %d is thinking\n", elapsed, philo->id);
 		else if (DEAD == states && !simulation_done(philo->table))
-			printf("%ld %d is dead\n", elapsed, philo->id);
+			printf("%ld %d died\n", elapsed, philo->id);
 	}
 	safe_mutex(&philo->table->write_mutex, UNLOCK);
 }
