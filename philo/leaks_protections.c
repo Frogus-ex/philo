@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:40:09 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:27:19 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 10:49:47 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*safe_malloc(size_t bytes)
 	void	*ret;
 
 	ret = malloc(bytes);
-	if (NULL == ret)
+	if (!ret)
 		print_error("Malloc failed");
 	return (ret);
 }
@@ -26,7 +26,7 @@ static void	handle_mutex_error(int status, t_opcode opcode)
 {
 	if (0 == status)
 		return ;
-	if (EINVAL == status && LOCK == opcode || UNLOCK == opcode)
+	if ((EINVAL == status && LOCK == opcode) || UNLOCK == opcode)
 		print_error("The value specified by mutex is invalid.");
 	else if (EINVAL == status && INIT == opcode)
 		print_error("The value specified by attr is invalid.");

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:34:54 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:27:54 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:28:26 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define DEBUG_MODE 1
+# define DEBUG_MODE 0
 
 typedef enum e_opcode
 {
@@ -94,7 +94,7 @@ struct					s_table
 };
 
 void					print_error(char *error);
-void					parse_input(t_table *table, char **av);
+int						parse_input(t_table *table, char **av);
 void					*safe_malloc(size_t bytes);
 void					safe_mutex(t_mtx *mutex, t_opcode opcode);
 void					safe_thread(pthread_t *thread, void *(*foo)(void *),

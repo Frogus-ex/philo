@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 12:03:13 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:27:40 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:30:01 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	philo_dead(t_philo *philo)
 	elapsed = get_time(MILLISECOND) - get_long(&philo->philo_mutex,
 			&philo->last_meal_time);
 	time_to_die = philo->table->time_to_die / 1e3;
-	if (elapsed > time_to_die)
+	if (elapsed >= time_to_die)
 		return (true);
 	return (false);
 }

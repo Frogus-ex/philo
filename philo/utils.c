@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:06:27 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:28:18 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:52:58 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_error(char *error)
 {
 	printf("%s\n", error);
-	exit(EXIT_FAILURE);
+	return ;
 }
 
 long	get_time(t_time_code time_code)

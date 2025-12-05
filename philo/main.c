@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:03:18 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:28:49 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:04:39 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int ac, char **av)
 
 	if (5 == ac || 6 == ac)
 	{
-		parse_input(&table, av);
+		if (parse_input(&table, av) == -1)
+			return (-1);
 		data_init(&table);
 		dinner_start(&table);
 		clean_all(&table);

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:12:49 by frogus            #+#    #+#             */
-/*   Updated: 2025/12/04 10:27:47 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:28:40 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_digit(char c)
 
 static bool	is_space(char c)
 {
-	return (c >= 9 && c <= 13 || c == 32);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
 
 static char	*valid_input(char *str)
@@ -33,14 +33,14 @@ static char	*valid_input(char *str)
 	if (*str == '+')
 		++str;
 	else if (*str == '-')
-		print_error("not a positive number");
-	if (!is_digit)
-		print_error("not a valid digit");
+		return (print_error("not a positive number"), NULL);
+	if (!is_digit(*str))
+		return (print_error("not a valid digit"), NULL);
 	number = str;
 	while (is_digit(*str++))
 		len++;
 	if (len > 10)
-		print_error("INT MAX BUSTED");
+		return (print_error("INT MAX BUSTED"), NULL);
 	return (number);
 }
 
@@ -50,24 +50,42 @@ static long	ft_atol(char *str)
 
 	num = 0;
 	str = valid_input(str);
+	if (!str)
+		return (-1);
 	while (is_digit(*str))
 		num = (num * 10) + (*str++ - 48);
 	if (num > INT_MAX)
-		print_error("INT MAX BUSTED");
+		return (print_error("INT MAX BUSTED"), -1);
 	return (num);
 }
 
-void	parse_input(t_table *table, char **av)
+int	parse_input(t_table *table, char **av)
 {
 	table->philo_nbr = ft_atol(av[1]);
+	if (table->philo_nbr == -1)
+		return (-1);
 	table->time_to_die = ft_atol(av[2]) * 1e3;
+	if (table->time_to_die == -1000)
+		return (-1);
 	table->time_to_eat = ft_atol(av[3]) * 1e3;
+	if (table->time_to_eat == -1000)
+		return (-1);
 	table->time_to_sleep = ft_atol(av[4]) * 1e3;
+	if (table->time_to_sleep == -1000)
+		return (-1);
 	if (table->time_to_die < 6e4 || table->time_to_eat < 6e4
 		|| table->time_to_sleep < 6e4)
-		print_error("Wrong timestamps use less than 60ms timestamps");
+	{
+		print_error("Wrong timestamps use more than 60ms timestamps");
+		return (-1);
+	}
 	if (av[5])
+	{
 		table->limit_of_meal = ft_atol(av[5]);
+		if (table->limit_of_meal == -1)
+			return (-1);
+	}
 	else
 		table->limit_of_meal = -1;
+	return (0);
 }
